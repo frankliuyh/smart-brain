@@ -38,15 +38,17 @@ class App extends Component {
   }
   
   onButtonSubmit = () => {
-    this.setState({imageURL: this.state.input});
-    app.models.predict("a403429f2ddf4b49b307e318f00e528b", this.state.input).then(
-      function(response) {
-        console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
-      },
-      function(err) {
-        // there was an error
-      }
-    );
+    const predict = () => {
+      app.models.predict("a403429f2ddf4b49b307e318f00e528b", this.state.imageURL).then(
+        function(response) {
+          console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
+        },
+        function(err) {
+          // there was an error
+        }
+      );
+    };
+    this.setState({imageURL: this.state.input}, predict);
   }
   
   render() {
