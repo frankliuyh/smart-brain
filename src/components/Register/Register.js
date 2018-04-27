@@ -23,7 +23,7 @@ class Register extends React.Component {
     }
     
     onSubmitRegister = () => {
-      fetch('http://web-dev-bootcamp-buschelsea.c9users.io:8081/register', {
+      fetch('http://zero-to-mastery-buschelsea.c9users.io:8081/register', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'

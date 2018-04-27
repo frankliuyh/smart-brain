@@ -82,7 +82,7 @@ class App extends Component {
       app.models.predict("a403429f2ddf4b49b307e318f00e528b", this.state.imageURL)
       .then(response => {
         if(response) {
-          fetch('http://web-dev-bootcamp-buschelsea.c9users.io:8081/image', {
+          fetch('http://zero-to-mastery-buschelsea.c9users.io:8081/image', {
             method: 'put',
             headers: {
               'Content-Type': 'application/json'
