@@ -7,12 +7,7 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
-import Clarifai from 'clarifai';
 import './App.css';
-
-const app = new Clarifai.App({
- apiKey: 'ac49a62b74da4a91a3390332ca0f4686'
-});
 
 const particlesOption = {
 	particles: {
@@ -58,7 +53,6 @@ class App extends Component {
   }
 
   calculateFaceLocation = (data) => {
-    console.log(data);
     const clarifaiFace = data.outputs['0'].data.regions['0'].region_info.bounding_box;
     const image = document.getElementById('inputimage');
     const width = Number(image.width);
@@ -81,7 +75,15 @@ class App extends Component {
   
   onButtonSubmit = () => {
     const predict = () => {
-      app.models.predict("a403429f2ddf4b49b307e318f00e528b", this.state.imageURL)
+      fetch('http://zero-to-mastery-buschelsea.c9users.io:8081/imageurl', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          imageURL: this.state.imageURL
+        })
+      }).then(response => response.json())
       .then(response => {
         if(response) {
           fetch('http://zero-to-mastery-buschelsea.c9users.io:8081/image', {
