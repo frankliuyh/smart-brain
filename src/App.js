@@ -75,7 +75,7 @@ class App extends Component {
   
   onButtonSubmit = () => {
     const predict = () => {
-      fetch('http://zero-to-mastery-buschelsea.c9users.io:8081/imageurl', {
+      fetch('https://frankliuyh-smart-brain.herokuapp.com/imageurl', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ class App extends Component {
       }).then(response => response.json())
       .then(response => {
         if(response) {
-          fetch('http://zero-to-mastery-buschelsea.c9users.io:8081/image', {
+          fetch('https://frankliuyh-smart-brain.herokuapp.com/image', {
             method: 'put',
             headers: {
               'Content-Type': 'application/json'
