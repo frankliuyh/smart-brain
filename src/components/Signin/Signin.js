@@ -5,7 +5,8 @@ class Signin extends React.Component {
       super(props);
       this.state = {
         signInEmail: '',
-        signInPassword: ''
+        signInPassword: '',
+        wrongCredentials: false
       };
     }
     
@@ -31,8 +32,11 @@ class Signin extends React.Component {
         if(user.id){
           this.props.loadUser(user);
           this.props.onRouteChange('home');
+          this.setState({wrongCredentials: false})
+        } else {
+          this.setState({wrongCredentials: true})
         }
-      });
+      }).catch(err => console.log('Cannot signin'));
     }
     
     render() {
@@ -58,6 +62,7 @@ class Signin extends React.Component {
                   <div className="lh-copy mt3">
                     <p className="f6 link dim black db pointer" onClick={() => onRouteChange('register')}>Register</p>
                   </div>
+                  {this.state.wrongCredentials ? <p className="red">Wrong email or password</p> : null}
                 </div>
               </main>
           </article>
